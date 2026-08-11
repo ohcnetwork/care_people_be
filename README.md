@@ -10,7 +10,7 @@ To develop the plug in local environment along with care, follow the steps below
 
 ```bash
 cd care
-git clone git@github.com:ohcnetwork/Care People.git
+git clone git@github.com:ohcnetwork/care_people_be.git
 ```
 
 2. Add the plugin config in plug_config.py
