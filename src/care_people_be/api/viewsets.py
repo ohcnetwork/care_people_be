@@ -1,7 +1,8 @@
 from uuid import UUID
 
 from django_filters import rest_framework as filters
-from rest_framework.filters import TagFilter, OrderingFilter
+from rest_framework.filters import OrderingFilter
+from care.emr.tagging.filters import TagFilter
 from django.shortcuts import get_object_or_404
 from care_people_be.api.spec import CarePeopleListSpec, CarePeopleRetrieveSpec
 from care_people_be.models.care_people import CarePeople
