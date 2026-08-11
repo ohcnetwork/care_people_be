@@ -48,7 +48,8 @@ class PatientPrimaryFacilityExtension(PlugExtension):
         return self.validate_facility(data, resource)
 
     def deserialize_extensions_retrieve(self, data, resource):
-        data["primary_facility"] = get_object_or_404(Facility, id=data["primary_facility"]).external_id
+        if data.get("primary_facility"):
+            data["primary_facility"] = get_object_or_404(Facility, id=data["primary_facility"]).external_id
         return data
 
 ExtensionRegistry.register(PatientPrimaryFacilityExtension())
