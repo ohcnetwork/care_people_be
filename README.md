@@ -20,7 +20,7 @@ git clone git@github.com:ohcnetwork/Care People.git
 
 Care People_plugin = Plug(
     name=Care People, # name of the django app in the plugin
-    package_name="/app/Care People", # this has to be /app/ + plugin folder name
+    package_name="/app/care_people_be", # this has to be /app/ + plugin folder name
     version="", # keep it empty for local development
     configs={}, # plugin configurations if any
 )
@@ -60,7 +60,7 @@ To install care Care People, you can add the plugin config in [care/plug_config.
 
 Care People_plug = Plug(
     name=Care People,
-    package_name="git+https://github.com/ohcnetwork/Care People.git",
+    package_name="git+https://github.com/ohcnetwork/care_people_be.git",
     version="@master",
     configs={},
 )
