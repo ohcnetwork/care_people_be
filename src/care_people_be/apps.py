@@ -9,4 +9,5 @@ class CarePeopleConfig(AppConfig):
     verbose_name = _("Care people")
 
     def ready(self):
-        import care_people_be.signals  # noqa F401
+        import care_people_be.signals
+        import care_people_be.extensions # noqa F401

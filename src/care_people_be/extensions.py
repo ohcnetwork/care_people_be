@@ -4,7 +4,7 @@ from care.utils.shortcuts import get_object_or_404
 from care.facility.models.facility import Facility
 
 class PatientPrimaryFacilityExtension(PlugExtension):
-    name = "primary_facility"
+    extension_name = "primary_facility"
     description = "Extension to store primary facility for a patient."
     version = "1.0.0"
     resource_type = ExtensionResource.patient
@@ -26,6 +26,6 @@ class PatientPrimaryFacilityExtension(PlugExtension):
     def serialize_extensions(self, data,resource):
             return self.validate_facility(data, resource)
 
-ExtensionRegistry.register_extension(PatientPrimaryFacilityExtension)
+ExtensionRegistry.register(PatientPrimaryFacilityExtension())
 
 
