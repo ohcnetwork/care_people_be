@@ -10,7 +10,9 @@ class CarePeopleListSpec(EMRResource):
     patient: dict
     facility: dict
 
+    @classmethod
     def perform_extra_serialization(cls, mapping, obj, *args, **kwargs):
+        super().perform_extra_serialization(mapping, obj, *args, **kwargs)
         if obj.patient:
             mapping["patient"] = PatientListSpec.serialize(obj.patient).to_json()
         if obj.facility:
@@ -21,7 +23,9 @@ class CarePeopleRetrieveSpec(CarePeopleListSpec):
     patient: dict
     facility: dict
 
+    @classmethod
     def perform_extra_serialization(cls, mapping, obj, *args, **kwargs):
+        EMRResource.perform_extra_serialization(mapping, obj, *args, **kwargs)
         if obj.patient:
             mapping["patient"] = PatientRetrieveSpec.serialize(obj.patient,facility=obj.facility).to_json()
         if obj.facility:

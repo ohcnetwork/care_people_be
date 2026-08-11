@@ -2,6 +2,7 @@ from django_filters import rest_framework as filters
 from rest_framework.filters import OrderingFilter
 from care_people_be.api.spec import CarePeopleListSpec, CarePeopleRetrieveSpec
 from care_people_be.models.care_people import CarePeople
+from care.emr.models.patient import Patient
 from care.security.authorization import AuthorizationController
 from care.emr.api.viewsets.base import (
     EMRBaseViewSet,
@@ -27,9 +28,14 @@ class CarePeopleViewSet(
 
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        return AuthorizationController.call(
-            "get_filtered_patients", queryset, self.request.user
+        allowed_patients = AuthorizationController.call(
+            "get_filtered_patients", Patient.objects.all(), self.request.user
+        )
+        return (
+            super()
+            .get_queryset()
+            .filter(patient__in=allowed_patients)
+            .select_related("patient", "facility")
         )
 
 
