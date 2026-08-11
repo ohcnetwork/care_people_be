@@ -23,7 +23,7 @@ class CarePeopleRetrieveSpec(CarePeopleListSpec):
 
     def perform_extra_serialization(cls, mapping, obj, *args, **kwargs):
         if obj.patient:
-            mapping["patient"] = PatientRetrieveSpec.serialize(obj.patient).to_json()
+            mapping["patient"] = PatientRetrieveSpec.serialize(obj.patient,facility=obj.facility).to_json()
         if obj.facility:
             mapping["facility"] = FacilityBaseSpec.serialize(obj.facility).to_json()
 
