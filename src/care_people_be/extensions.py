@@ -36,11 +36,11 @@ class PatientPrimaryFacilityExtension(PlugExtension):
 
     @staticmethod
     def validate_facility(data, resource=None):
-        facility_id = data.get("primary_facility")
-        if not facility_id:
+        facility = data.get("primary_facility")
+        if not facility:
             data.pop("primary_facility", None)
             return data
-        facility = get_object_or_404(Facility, external_id=facility_id)
+        facility = get_object_or_404(Facility, external_id=facility)
         data["primary_facility"] = str(facility.id)
         return data
 
