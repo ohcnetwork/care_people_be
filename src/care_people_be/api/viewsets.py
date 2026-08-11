@@ -41,8 +41,8 @@ class CarePeopleTagFilter(TagFilter):
         if not tag_ids:
             return queryset.none()
         if tags_behavior == "all":
-            return queryset.filter(patient__tags__contains=tag_ids)
-        return queryset.filter(patient__tags__overlap=tag_ids)
+            return queryset.filter(patient__instance_tags__contains=tag_ids)
+        return queryset.filter(patient__instance_tags__overlap=tag_ids)
 
 
 class CarePeopleFilters(filters.FilterSet):
